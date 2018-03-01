@@ -59,7 +59,7 @@ func main() {
 	}
 	for _, v := range vs {
 		print(len(v.RS), " ")
-		for r := range v.RS {
+		for _, r := range v.RS {
 			print(r, " ")
 		}
 		println()
