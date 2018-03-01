@@ -19,8 +19,9 @@ func main() {
 			print(i, " ")
 		}
 		println()
-	*/
 
+
+	*/
 	sort.Slice(d.RS, func(i, j int) bool {
 		return d.RS[i].S[0]+d.RS[i].S[1] < d.RS[j].S[0]+d.RS[j].S[1]
 	})
@@ -42,20 +43,13 @@ func main() {
 		vf := false
 		for i := 0; i < d.F; i++ {
 			v = vs[i]
-			tol := Lenght(v.X, v.Y, r.S[0], r.S[1])
+			tol := Lenght(v.X, v.Y, r.S[0], r.S[1]) + r.Lenght() + r.ES
 			//println("to ", tol, v.S, r.ES)
-			if v.S+tol <= r.ES {
-				continue
-			}
-			tol += r.Lenght()
 			//println("total ", tol, v.S, r.LF)
-			if v.S+tol > r.LF {
+			if v.S+tol >= r.LF || v.S+tol >= d.T {
 				continue
 			}
-			//println("finish ", v.S+tol, d.T)
-			if v.S+tol >= d.T {
-				continue
-			}
+
 			vs[i].S += tol
 			vs[i].RS = append(vs[i].RS, rs[j])
 			vs[i].X, vs[i].Y = r.F[0], r.F[1]
