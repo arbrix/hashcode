@@ -45,7 +45,10 @@ func main() {
 			vs[i].X, vs[i].Y = r.F[0], r.F[1]
 			rs = append(rs[:j], rs[j+1:]...)
 			//fmt.Printf("%d %v %d\n", j, rs, len(rs))
-			j--
+			if j > 0 {
+				j--
+			}
+
 			vf = true
 			break
 		}
