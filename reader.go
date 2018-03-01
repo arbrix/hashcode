@@ -14,6 +14,7 @@ type Data struct {
 }
 
 type Ride struct {
+	I      int
 	S, F   [2]int
 	ES, LF int
 }
@@ -59,7 +60,7 @@ func (d *Data) Fill(src io.Reader) error {
 		if err != nil || n != 6 {
 			return errors.Wrapf(err, "ride line missed some important valuest, should contain 6 separate number (%d was readed)", n)
 		}
-		d.RS[i] = Ride{S: [2]int{x1, y1}, F: [2]int{x2, y2}, ES: es, LF: lf}
+		d.RS[i] = Ride{I: i, S: [2]int{x1, y1}, F: [2]int{x2, y2}, ES: es, LF: lf}
 		i++
 	}
 

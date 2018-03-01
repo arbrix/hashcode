@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"sort"
 )
 
 func main() {
@@ -13,10 +14,24 @@ func main() {
 	//println("----")
 	vs := make([]Vahicle, d.F)
 
+	/*
+		for i := range d.RS {
+			print(i, " ")
+		}
+		println()
+	*/
+
+	sort.Slice(d.RS, func(i, j int) bool {
+		return d.RS[i].S[0]+d.RS[i].S[1] < d.RS[j].S[0]+d.RS[j].S[1]
+	})
+
 	rs := make([]int, len(d.RS))
-	for j := range d.RS {
-		rs[j] = j
+	for j, r := range d.RS {
+		rs[j] = r.I
+		//print(r.I, " ")
 	}
+	//println()
+	//fmt.Println(rs)
 	j := 0
 	var r Ride
 	var v Vahicle
@@ -28,16 +43,16 @@ func main() {
 		for i := 0; i < d.F; i++ {
 			v = vs[i]
 			tol := Lenght(v.X, v.Y, r.S[0], r.S[1])
-			//println("to ", tol)
-			if v.S+tol >= r.ES {
+			//println("to ", tol, v.S, r.ES)
+			if v.S+tol <= r.ES {
 				continue
 			}
 			tol += r.Lenght()
-			//println("total ", tol)
+			//println("total ", tol, v.S, r.LF)
 			if v.S+tol > r.LF {
 				continue
 			}
-			//println("finish ", v.S+tol)
+			//println("finish ", v.S+tol, d.T)
 			if v.S+tol >= d.T {
 				continue
 			}
