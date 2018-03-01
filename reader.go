@@ -51,7 +51,7 @@ func (d *Data) Fill(src io.Reader) error {
 		return errors.Wrapf(err, "first line missed some important valuest, should contain 6 separate number (%d was readed)", n)
 	}
 
-	d.RS = make([]Ride, d.R)
+	d.RS = make([]Ride, d.N)
 	i := 0 // row index
 	var x1, y1, x2, y2, es, lf int
 	for scanner.Scan() {

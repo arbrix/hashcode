@@ -6,6 +6,7 @@ import (
 
 func main() {
 	fi, _ := os.Open(os.Args[1])
+	defer fi.Close()
 	d := Data{}
 	d.Fill(fi)
 	//fmt.Println("% v", d)
@@ -28,7 +29,7 @@ func main() {
 			v = vs[i]
 			tol := Lenght(v.X, v.Y, r.S[0], r.S[1])
 			//println("to ", tol)
-			if v.S+tol <= r.ES {
+			if v.S+tol >= r.ES {
 				continue
 			}
 			tol += r.Lenght()
@@ -57,6 +58,7 @@ func main() {
 		}
 
 	}
+
 	for _, v := range vs {
 		print(len(v.RS), " ")
 		for _, r := range v.RS {
@@ -64,14 +66,4 @@ func main() {
 		}
 		println()
 	}
-	/*
-		fo, _ := os.Create("output.txt")
-		scanner := bufio.NewScanner(fi)
-		writer := bufio.NewWriter(fo)
-		defer fi.Close()
-		defer fo.Close()
-		defer writer.Flush()
-		scanner.Scan()
-		writer.Write(scanner.Bytes())
-	*/
 }
