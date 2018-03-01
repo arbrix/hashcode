@@ -54,8 +54,8 @@ func main() {
 		}
 
 	}
-	for i, v := range vs {
-		print(i, " ")
+	for _, v := range vs {
+		print(len(v.RS), " ")
 		for r := range v.RS {
 			print(r, " ")
 		}
