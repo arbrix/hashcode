@@ -1,16 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
 func main() {
-	fi, _ := os.Open("a_example.in")
+	fi, _ := os.Open(os.Args[1])
 	d := Data{}
 	d.Fill(fi)
-	fmt.Println("% v", d)
-	println("----")
+	//fmt.Println("% v", d)
+	//println("----")
 	vs := make([]Vahicle, d.F)
 
 	rs := make([]int, len(d.RS))
@@ -22,7 +21,7 @@ func main() {
 	var v Vahicle
 	for len(rs)-j > 0 { //j, r = range d.RS { //
 		//fmt.Printf("%#v %#v\n", d.RS, rs)
-		fmt.Println(len(rs), j, len(rs)-j == 0)
+		//fmt.Println(len(rs), j, len(rs)-j == 0)
 		r = d.RS[rs[j]]
 		vf := false
 		for i := 0; i < d.F; i++ {
@@ -33,7 +32,7 @@ func main() {
 				continue
 			}
 			tol += r.Lenght()
-			println("total ", tol)
+			//println("total ", tol)
 			if v.S+tol > r.LF {
 				continue
 			}
@@ -56,7 +55,11 @@ func main() {
 
 	}
 	for i, v := range vs {
-		fmt.Println(i, v.RS)
+		print(i, " ")
+		for r := range v.RS {
+			print(r, " ")
+		}
+		println()
 	}
 	/*
 		fo, _ := os.Create("output.txt")
